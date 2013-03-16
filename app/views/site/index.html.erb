@@ -1,0 +1,52 @@
+
+<div class="page-header">
+  <div class="facebook-logo"><%= image_tag "facebook1.jpeg" %></div>
+  <h1>Pasala y que no vuelva! 
+    <br>
+    <small>Será cierto que Facebook tiene 1000 millones de usuarios?</small>
+  </h1>
+</div>
+
+          <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.google.com&amp;send=false&amp;layout=standard&amp;width=999&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=35&amp;appId=436003813149378" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:999px; height:35px;" allowTransparency="true">
+          </iframe>
+
+<% if current_user.nil? %>
+  <button class="btn btn-large btn-block btn-primary" type="button">
+    <%= link_to "Deja tu foto de perfil y Pasala y que no vuelva!", "/auth/facebook" %>
+  </button>
+<% else %>
+  <div class="joined alert-success center">
+    <span class="label label-success">Success</span> Ya dejaste tu foto de perfil ! Ahora pasala y que no vuelva!
+  </div>
+<% end %>
+
+
+
+
+
+<div class="hero-unit">
+  <div class="users-count center">
+    <h3>Contador de usuarios: </h3><h2><%= count_users_helper %></h2>
+  </div>
+
+  <div class="users-container">
+      <% @users.each_slice(10) do |user| %>
+        <div class="one-row">
+          <% user.each do |u| %>
+              <%= image_tag u.avatar.url(:small), :class => "avatar_image" %>
+          <% end %>
+        </div>
+      <% end %>
+  </div>
+
+
+  
+    <div class="pagination pagination-centered">
+      <ul>
+        <li><%#= will_paginate @users, :page_links=>true %>
+          <%= will_paginate @users, :renderer => BootstrapPagination::Rails %>
+        </li>
+      </ul>
+    </div>
+</div>
+

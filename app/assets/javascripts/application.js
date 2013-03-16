@@ -12,4 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require twitter/bootstrap
+//= require s3ShareIt
+//= require site
+
+$(document).ready(function() {
+        $('body').s3ShareIt({'opacity':.7, 'iconsPath': 'img/s3ShareIt'});
+      });
+
+
